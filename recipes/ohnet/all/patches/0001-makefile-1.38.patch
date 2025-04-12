@@ -489,3 +489,29 @@ index 17e7d2b4..56365ed1 100644
  else
  ohNet.net.dll :  $(objdir)ohNet.net.dll ohNetDll
  ohNetDll : ohNetDllImpl
+diff --git a/OhNet.mak b/OhNet.mak
+index b93f288b..33c13cfe 100644
+--- a/OhNet.mak
++++ b/OhNet.mak
+@@ -67,20 +67,21 @@ includes = -IBuild\Include
+ bundle_build = Build\Bundles
+ mDNSdir = Build\mDNS
+ osdir = Windows
+ objext = obj
+ libprefix =
+ libext = lib
+ sharedlibprefix =
+ sharedlibext = lib
+ exeext = exe
+ compiler = cl /nologo /Fo$(objdir)
++compiler_cc = cl /nologo /Fo$(objdir)
+ link = link /nologo $(link_flag_debug) /SUBSYSTEM:CONSOLE /map $(link_libs) /incremental:no
+ linkoutput = /out:
+ dllprefix =
+ dllext = dll
+ linkopts_ohNet =
+ link_dll = link /nologo $(link_flag_debug_dll) /map $(link_libs) /dll 
+ csharp = csc /nologo /platform:anycpu
+ csharpdefines =
+ !if "$(windows_store_10)"=="1"
+ portable45refs=c:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\v4.5\ 
