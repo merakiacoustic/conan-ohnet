@@ -2,7 +2,13 @@ from conan import ConanFile
 from conan.tools.build import check_min_cppstd
 from conan.tools.cmake import CMakeDeps, CMakeToolchain, CMake, cmake_layout
 from conan.tools.env import VirtualBuildEnv
-from conan.tools.files import copy, get, download, export_conandata_patches, apply_conandata_patches
+from conan.tools.files import (
+    copy,
+    get,
+    download,
+    export_conandata_patches,
+    apply_conandata_patches,
+)
 from conan.tools.scm import Version
 from conan.errors import ConanInvalidConfiguration
 import os
@@ -54,7 +60,7 @@ class OhPipelineConan(ConanFile):
         self.requires("alac/cci.20121212")
         self.requires("libfdk_aac/2.0.3")
         self.requires("faac/1.30")
-        self.requires("flac/1.4.3")
+        self.requires("flac/1.5.0")
         self.requires("ogg/1.3.5")
         self.requires("vorbis/1.3.7")
 
@@ -64,8 +70,13 @@ class OhPipelineConan(ConanFile):
     def validate(self):
         if self.settings.compiler.cppstd:
             check_min_cppstd(self, self._min_cppstd)
-        minimum_version = self._compilers_minimum_version.get(str(self.settings.compiler), False)
-        if minimum_version and Version(self.settings.compiler.version) < minimum_version:
+        minimum_version = self._compilers_minimum_version.get(
+            str(self.settings.compiler), False
+        )
+        if (
+            minimum_version
+            and Version(self.settings.compiler.version) < minimum_version
+        ):
             raise ConanInvalidConfiguration(
                 f"{self.ref} requires C++{self._min_cppstd}, which your compiler does not support."
             )
@@ -80,7 +91,11 @@ class OhPipelineConan(ConanFile):
 
     def source(self):
         get(self, **self.conan_data["sources"][self.version]["source"], strip_root=True)
-        download(self, **self.conan_data["sources"][self.version]["cmake"], filename="CMakeLists.txt")
+        download(
+            self,
+            **self.conan_data["sources"][self.version]["cmake"],
+            filename="CMakeLists.txt",
+        )
 
     def build(self):
         apply_conandata_patches(self)
@@ -89,7 +104,12 @@ class OhPipelineConan(ConanFile):
         cmake.build()
 
     def package(self):
-        copy(self, "License.txt", src=self.source_folder, dst=os.path.join(self.package_folder, "licenses"))
+        copy(
+            self,
+            "License.txt",
+            src=self.source_folder,
+            dst=os.path.join(self.package_folder, "licenses"),
+        )
         cmake = CMake(self)
         cmake.install()
 
