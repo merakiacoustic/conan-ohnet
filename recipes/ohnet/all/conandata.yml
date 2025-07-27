@@ -11,6 +11,9 @@ sources:
   "1.38.5707":
     url: "https://github.com/openhome/ohNet/archive/refs/tags/ohNet_1.38.5707.tar.gz"
     sha256: "1c0fea933ddeae2a98b77f7471466357d1871d45bb14a095ef3d9813ae3b0e1d"
+  "1.39.5840":
+    url: "https://github.com/openhome/ohNet/archive/refs/tags/ohNet_1.39.5840.tar.gz"
+    sha256: "c0513891f8901f9b51f9d72a0984636c0758df6c8655f52259cc34734fd3a4e7"
 patches:
   "1.37.5454":
     - patch_file: "patches/0001-makefile-1.37.5454.patch"
@@ -29,6 +32,10 @@ patches:
       patch_type: "conan"
   "1.38.5707":
     - patch_file: "patches/0001-makefile-1.38.patch"
+      patch_description: "Reduce gcc-centricity in Makefile"
+      patch_type: "conan"
+  "1.39.5840":
+    - patch_file: "patches/0001-makefile-1.39.patch"
       patch_description: "Reduce gcc-centricity in Makefile"
       patch_type: "conan"
     - patch_file: "patches/0002-ohnet.mak.patch"
