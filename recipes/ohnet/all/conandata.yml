@@ -38,6 +38,3 @@ patches:
     - patch_file: "patches/0001-makefile-1.39.patch"
       patch_description: "Reduce gcc-centricity in Makefile"
       patch_type: "conan"
-    - patch_file: "patches/0002-ohnet.mak.patch"
-      patch_description: "Remove option unsupported in VS 2022"
-      patch_type: "build"
